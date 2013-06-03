@@ -1,0 +1,26 @@
+{
+  "routes":
+  [
+    { "path": "/", "callback": "application#index" },
+    { "path": "/error", "callback": "application#error" },
+    { "path": "/home", "callback": "home#home" },
+    { "path": "/login", "method":"post", "callback": "useraccess#login" },
+    { "path": "/logoff", "callback": "useraccess#logoff" },
+    { "path": "/about", "callback": "application#about" },
+    { "path": "/contact", "callback": "application#contact" },
+    { "path": "/api/delete", "callback": "api#deleterec" },
+    { "path": "/api/addplace", "method":"post","callback": "api#addrec" }
+  ],
+  "filters":
+  [
+    {"path": "/home", "callback": "session_filter#validateSession"},
+    {"path": "/about", "callback": "session_filter#validateSession"},
+    {"path": "/contact", "callback": "session_filter#validateSession"},
+    {"path": "/api/delete", "callback": "session_filter#validateSession"},
+    {"path": "/api/add", "callback": "session_filter#validateSession"}
+  ],
+  "websockets":
+  [
+    { "event": "", "callback": ""}
+  ]
+}

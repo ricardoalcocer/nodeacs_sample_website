@@ -1,0 +1,25 @@
+{
+  "name": "acsadmin1",
+  "version": "0.1.0",
+  "description": "",
+  "framework": "mvc",
+  "bodyParser": true,
+  "main": "app.js",
+  "logfile" : "acsadmin1.log",
+  "keywords": [
+  ],
+  "author": "",
+  "maintainers": [
+  ],
+  "contributors": [
+  ],
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "preferGlobal": false,
+  "dependencies": {
+  },
+  "license":"",
+  "private": true
+}

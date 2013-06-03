@@ -1,0 +1,74 @@
+<% include header.ejs %>
+  <script>
+    function deleterec(recid){
+      var r=confirm("Delete this record?");
+      if (r==true){
+          $.ajax({
+            url: '/api/delete/?id=' + recid,
+            type: 'GET',
+            success: function(data) {
+              location.href='/home';
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) { 
+                //alert("Status: " + textStatus); 
+                //alert("Error: " + errorThrown); 
+            } 
+        });
+      } 
+    }
+  </script>
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span12">
+          <table id="placestable" class="table table-striped table-bordered table-hover">
+          <thead>
+          <tr>
+            <th>Name</th>
+            <th>City</th>
+            <th>Phone</th>
+            <th>Map</th>
+            <th>Delete</th>
+          </tr>
+          </thead>
+          <tbody>
+            <% places.forEach(function(place){ %>
+              <tr id="<%=place.id%>">
+                <td><%=place.name%></td>
+                <td><%=place.city%></td>
+                <td><%=place.phone_number%></td>
+                <td><a href="http://maps.google.com/?q=<%=place.name%>@<%=place.latitude%>,<%=place.longitude%>" target="_blank" title="Map">Map</a>
+                <td><a href="javascript:void(0);" onClick="deleterec('<%=place.id%>')" title="Delete"><div style="text-align: center"><i class="icon-remove-circle"></i></div></a></td>
+              </tr>
+            <%    }) %>
+          </tbody>
+        </table>
+        </div><!--/span-->
+      </div><!--/row-->
+      <form method="POST" action="/api/addplace">
+      <div class="row-fluid">
+        <div class="span3">
+          <label>Name</label>
+          <input type="text" placeholder="Type something…" name="placename">
+        </div>
+        <div class="span3">
+          <label>City</label>
+          <input type="text" placeholder="Type something…" name="city">
+        </div>
+        <div class="span2">
+          <label>Phone</label>
+          <input type="text" placeholder="Type something…" name="phone" style="width: 100px">
+        </div>
+        <div class="span2">
+          <label>Latitude</label>
+          <input type="text" placeholder="Type something…" name="latitude" style="width: 100px">
+        </div>
+        <div class="span2">
+          <label>Longitude</label>
+          <input type="text" placeholder="Type something…" name="longitude" style="width: 100px">
+        </div>
+      </div><!--/row-->
+      <div class="row-fluid">
+        <button class="btn btn-primary">Save</button>
+      </div>
+      </form>
+<% include footer.ejs %>
